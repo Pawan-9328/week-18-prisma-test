@@ -7,11 +7,12 @@
 generator client {
   provider = "prisma-client"
   output   = "../src/generated/prisma"
+
 }
 
 datasource db {
   provider = "postgresql"
-  // url      = env("DATABASE_URL")
+   //url      = env("DATABASE_URL")
 }
 
 model User {
@@ -20,6 +21,7 @@ model User {
    password    String 
    age         Int
    city        String
+   todos       Todo[]
 
 }
 
@@ -29,6 +31,7 @@ model Todo{
   description     String
   done            Boolean
   userId          Int
+  user            User @relation(fields: [userId] , references: [id])  
 
 }
 
